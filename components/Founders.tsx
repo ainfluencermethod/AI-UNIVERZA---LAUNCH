@@ -1,0 +1,108 @@
+import React from 'react';
+import { Instagram } from 'lucide-react';
+
+const team = [
+  {
+    name: 'Nepridiprav',
+    role: 'Soustanovitelj',
+    handle: '@nepridiprav',
+    image: 'https://storage.googleapis.com/msgsndr/TGsyH70nsz7y3hijuqTn/media/695d2a0d6c1415037d5b56a6.jpg',
+    link: 'https://www.instagram.com/nepridiprav/'
+  },
+  {
+    name: 'Tim Brdnik',
+    role: 'Soustanovitelj',
+    handle: '@timbrdnik',
+    image: 'https://storage.googleapis.com/msgsndr/TGsyH70nsz7y3hijuqTn/media/695fb8846eabe6432325b5d5.webp',
+    link: 'https://www.instagram.com/timbrdnik/'
+  },
+  {
+    name: 'Luka Lorenčič',
+    role: 'Soustanovitelj',
+    handle: '@lukalorencic',
+    image: 'https://storage.googleapis.com/msgsndr/TGsyH70nsz7y3hijuqTn/media/695d2b2cd5b483fb55c164f2.jpg',
+    link: 'https://www.instagram.com/lukalorencic/'
+  },
+  {
+    name: 'Žiga Klun',
+    role: 'Founder babiceva.ai',
+    handle: '@ziga.klun',
+    image: 'https://storage.googleapis.com/msgsndr/TGsyH70nsz7y3hijuqTn/media/695d2af96c141559bf5b7ec2.jpg',
+    link: 'https://www.instagram.com/ziga.klun/'
+  }
+];
+
+export const Founders: React.FC = () => {
+  return (
+    <div className="py-24 px-4 text-center bg-dark-bg relative">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white/5 via-transparent to-transparent pointer-events-none"></div>
+
+      <div className="max-w-4xl mx-auto relative z-10">
+        <p className="text-gray-500 text-xs tracking-[0.2em] uppercase mb-4">Spoznaj ekipo</p>
+        <h2 className="text-4xl md:text-6xl font-black italic mb-12 font-serif">
+            HEJ, TUKAJ <br/>
+            <span className="text-brand-gold">AI UNIVERZA</span>
+        </h2>
+        
+        {/* Manifesto Note */}
+        <div className="bg-[#111] p-8 md:p-12 rounded-3xl border border-white/5 text-left shadow-2xl mb-16 relative overflow-hidden">
+             <div className="absolute top-0 right-0 p-12 opacity-5 font-serif text-9xl text-white italic leading-none pointer-events-none">
+                 "
+             </div>
+             
+             <div className="relative z-10 space-y-6 text-lg text-gray-300 font-light leading-relaxed">
+                <p>
+                    Preden smo ustanovili <strong className="text-white">AI Influencer Blueprint</strong>, smo bili točno tam, kjer si ti morda zdaj.
+                    Objavljali smo na stotine kratkih videov, ki so propadli. Čepeli smo v "200-view zaporu" mesece in čakali na preboj.
+                </p>
+                <p className="font-serif text-2xl text-white italic">
+                    Nato se je vse spremenilo.
+                </p>
+                <p>
+                    Odkrili smo način, kako z uporabo umetne inteligence ustvariti vplivneže, ki ne potrebujejo naše prisotnosti, ne potrebujejo snemanja in delajo 24/7.
+                    To ni "get rich quick". To je sistematičen pristop k novemu mediju.
+                </p>
+                <p>
+                    Naša misija je preprosta: Opolnomočiti 1000 Slovencev, da ustvarijo digitalno neodvisnost v letu 2026.
+                </p>
+             </div>
+
+             <div className="mt-8 pt-8 border-t border-white/5">
+                 <p className="font-serif italic text-brand-gold text-2xl">
+                     Se vidimo na drugi strani,
+                 </p>
+                 <p className="text-gray-500 font-bold uppercase tracking-widest text-xs mt-2">
+                     - Ekipa AI Univerza
+                 </p>
+             </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+            {team.map((member, index) => (
+            <a 
+                key={index}
+                href={member.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group bg-card-bg border border-white/10 rounded-3xl p-6 hover:border-brand-gold transition-all duration-300 hover:-translate-y-1 flex flex-col items-center"
+            >
+                <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-white/10 group-hover:border-brand-gold transition-colors mb-4 relative bg-gray-800">
+                    <img src={member.image} alt={member.name} className="w-full h-full object-cover" />
+                </div>
+                
+                <h3 className="text-white font-bold text-lg mb-1">{member.name}</h3>
+                <p className={`text-[10px] font-mono uppercase tracking-wide mb-4 ${member.name === 'Žiga Klun' ? 'text-brand-gold' : 'text-gray-500'}`}>
+                    {member.role}
+                </p>
+                
+                <div className="mt-auto flex items-center gap-2 text-gray-400 text-xs group-hover:text-white transition-colors bg-white/5 px-3 py-1.5 rounded-full">
+                    <Instagram size={14} />
+                    <span>{member.handle}</span>
+                </div>
+            </a>
+            ))}
+        </div>
+      </div>
+    </div>
+  );
+};
