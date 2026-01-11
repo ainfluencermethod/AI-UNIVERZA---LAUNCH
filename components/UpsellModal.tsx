@@ -180,7 +180,7 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ onAccept, onDecline })
                          <div className="text-brand-gold text-xs uppercase font-bold tracking-wide mb-1 flex items-center gap-1">
                             <Lock size={10} /> One Time Offer
                          </div>
-                         <div className="text-5xl font-black text-white leading-none tracking-tight">1.997€</div>
+                         <div className="text-5xl font-black text-white leading-none tracking-tight">997€</div>
                      </div>
                 </div>
 
@@ -211,7 +211,7 @@ export const UpsellModal: React.FC<UpsellModalProps> = ({ onAccept, onDecline })
 
         <div className="bg-[#050505] p-4 text-center border-t border-white/10">
              <div className="flex items-center justify-center gap-2 opacity-50 text-[10px] text-gray-400 uppercase tracking-widest">
-                <Lock size={12} /> Secure 256-bit SSL Encryption &nbsp;•&nbsp; 30-Day Money Back Guarantee
+                <Lock size={12} /> Secure 256-bit SSL Encryption &nbsp;•&nbsp; 14-Day Money Back Guarantee
              </div>
         </div>
       </div>
