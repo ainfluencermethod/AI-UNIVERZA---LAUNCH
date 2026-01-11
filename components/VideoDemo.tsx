@@ -17,7 +17,7 @@ export const VideoDemo: React.FC = () => {
     };
 
     injectScript("https://fast.wistia.com/player.js");
-    injectScript("https://fast.wistia.com/embed/td0bu2np6o.js", true);
+    injectScript("https://fast.wistia.com/embed/ew9yvthesh.js", true);
   }, []);
 
   const handleUnmute = (e?: React.MouseEvent) => {
@@ -32,7 +32,7 @@ export const VideoDemo: React.FC = () => {
     window._wq = window._wq || [];
     // @ts-ignore
     window._wq.push({
-      id: "td0bu2np6o",
+      id: "ew9yvthesh",
       onReady: (video: any) => {
         video.unmute();
         video.play(); // Ensure playback continues after interaction
@@ -46,9 +46,10 @@ export const VideoDemo: React.FC = () => {
   return (
     <div className="relative w-full aspect-video bg-black overflow-hidden group">
       <style>{`
-        wistia-player[media-id='td0bu2np6o']:not(:defined) {
-          background: center / cover no-repeat url('https://storage.googleapis.com/msgsndr/TGsyH70nsz7y3hijuqTn/media/696182c0f8a93b5ecc52aa2d.webp');
+        wistia-player[media-id='ew9yvthesh']:not(:defined) {
+          background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/ew9yvthesh/swatch');
           display: block;
+          filter: blur(5px);
           padding-top: 56.25%;
         }
         @keyframes bounce-subtle {
@@ -72,7 +73,7 @@ export const VideoDemo: React.FC = () => {
         The Player with Autoplay enabled. 
       */}
       <WistiaPlayer 
-        media-id="td0bu2np6o" 
+        media-id="ew9yvthesh" 
         aspect="1.7777777777777777" 
         playbar="false" 
         play-button="false"
@@ -90,7 +91,7 @@ export const VideoDemo: React.FC = () => {
             <div className="bg-gradient-to-r from-brand-gold via-yellow-400 to-brand-gold px-4 md:px-6 py-2 rounded-xl shadow-[0_10px_25px_rgba(255,215,0,0.3)] flex items-center gap-2 border border-white/20 animate-bounce-subtle">
                 <VolumeX className="text-black w-4 h-4 md:w-5 md:h-5" strokeWidth={3} />
                 <span className="text-black font-black text-[9px] md:text-xs uppercase tracking-widest whitespace-nowrap">
-                    KLIKNI NA VIDEO IN VKLJUCI ZVOK
+                    KLIKNI NA VIDEO IN VKLJUČI ZVOK
                 </span>
             </div>
         </div>
