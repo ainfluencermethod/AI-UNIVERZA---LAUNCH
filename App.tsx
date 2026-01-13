@@ -170,9 +170,19 @@ const App: React.FC = () => {
                   <FAQ />
               </ScrollReveal>
 
-              <footer className="text-center py-12 text-gray-600 text-sm bg-black border-t border-gray-900 relative z-10 px-4">
+              <footer className="text-center py-16 text-gray-600 text-[10px] md:text-xs bg-black border-t border-gray-900 relative z-10 px-4">
+                  <div className="max-w-4xl mx-auto mb-10 leading-relaxed opacity-60">
+                      <p className="font-bold text-gray-500 uppercase tracking-widest mb-3">Izjava o omejitvi odgovornosti in rezultatih</p>
+                      <p className="mb-4">
+                          Rezultati, prikazani na tej spletni strani, so primeri izjemnih dosežkov in eksponentne rasti naših najuspešnejših študentov. Ti rezultati <strong className="text-gray-400">niso tipični</strong> in ne zagotavljajo, da boste dosegli enake ali podobne finančne izide. Uspeh v programu AI Universa je v celoti odvisen od vašega individualnega truda, predanosti, časa, ki ga namenite učenju, ter natančnega izvajanja naučenih strategij.
+                      </p>
+                      <p>
+                          Vsak posameznik vstopa v program z različnim predznanjem in delovno etiko, zato so <strong className="text-gray-400">vsi rezultati v vaših rokah</strong>. Spletna prodaja in uporaba AI orodij za ustvarjanje prihodka zahtevata vztrajnost in delo; brez vašega aktivnega prispevka rezultatov ne bo. Pridružitev programu ne pomeni avtomatskega zaslužka.
+                      </p>
+                  </div>
+
                   <p className="mb-4">© 2026 AI Universa.</p>
-                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 underline">
+                  <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 underline mb-4">
                       <button onClick={() => navigateTo('terms')} className="hover:text-brand-gold transition-colors">Splošni pogoji</button>
                       <button onClick={() => navigateTo('rules')} className="hover:text-brand-gold transition-colors">Pravila igre</button>
                       <button onClick={() => navigateTo('privacy')} className="hover:text-brand-gold transition-colors">Zasebnost</button>

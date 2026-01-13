@@ -46,13 +46,14 @@ export const SupportAgent: React.FC = () => {
 
   const initChat = () => {
     if (!chatInstanceRef.current) {
-      // Use safe access for process.env
-      const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
+      const apiKey = process.env.API_KEY;
       
-      if (!apiKey || apiKey === "undefined") {
+      // Ensure we have a non-empty, non-literal "undefined" string
+      if (!apiKey || apiKey === "undefined" || apiKey.trim() === "") {
         console.warn("Gemini API Key is missing or invalid. AI chat will be unavailable.");
         return null;
       }
+
       try {
         const ai = new GoogleGenAI({ apiKey });
         chatInstanceRef.current = ai.chats.create({
