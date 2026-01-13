@@ -1,7 +1,7 @@
 
-import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Loader2, Bot, User } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
+import { Bot, Loader2, MessageCircle, Send, User, X } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
 
 const SYSTEM_INSTRUCTION = `Si visoko inteligenten in izjemno jedrnat AI podporni agent za AI Universo. Tvoja naloga je hitro in učinkovito pomagati obiskovalcem spletne strani aiuniverza.si.
 
@@ -47,63 +47,44 @@ export const SupportAgent: React.FC = () => {
     const userMessage = input.trim();
     if (!userMessage || isLoading) return;
 
-    // 1. Update UI with user message
     const newMessages: Message[] = [...messages, { role: 'user', text: userMessage }];
     setMessages(newMessages);
     setInput('');
     setIsLoading(true);
 
     try {
-      // 2. Initialize AI instance per request for reliability
-      const apiKey = process.env.API_KEY;
-      if (!apiKey) {
-        throw new Error("API_KEY_MISSING");
-      }
-
-      const ai = new GoogleGenAI({ apiKey });
+      // Use process.env.API_KEY directly as required by guidelines.
+      // Assume this variable is valid and accessible in the execution context.
+      const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
       
-      // 3. Prepare contents. 
-      // CRITICAL: Gemini history MUST start with a 'user' message. 
-      // We skip the first hardcoded 'model' greeting for the API call.
-      const history = newMessages
-        .filter((_, idx) => idx > 0) // Skip initial greeting
+      // Gemini history must start with a 'user' message. 
+      // We skip the first hardcoded 'model' greeting when sending to the API.
+      const apiContents = newMessages
+        .filter((_, idx) => idx > 0)
         .map(msg => ({
           role: msg.role,
           parts: [{ text: msg.text }]
         }));
 
-      // If for some reason history is empty (shouldn't happen here), provide current message
-      const contents = history.length > 0 ? history : [{ role: 'user', parts: [{ text: userMessage }] }];
-
-      // 4. Generate Response
       const response = await ai.models.generateContent({
         model: 'gemini-3-flash-preview',
-        contents: contents,
+        contents: apiContents,
         config: {
           systemInstruction: SYSTEM_INSTRUCTION,
           temperature: 0.7,
-          topP: 0.9,
-          topK: 40,
         },
       });
 
       const modelText = response.text;
-      
-      if (!modelText) {
-        throw new Error("EMPTY_RESPONSE");
+      if (modelText) {
+        setMessages(prev => [...prev, { role: 'model', text: modelText }]);
       }
-
-      setMessages(prev => [...prev, { role: 'model', text: modelText }]);
     } catch (error: any) {
-      console.error("Chatbot Error:", error);
-      
-      let errorMessage = "Oprosti, trenutno imam težave s povezavo. Piši nam na pici@aiuniverza.si.";
-      
-      if (error?.message === "API_KEY_MISSING") {
-        errorMessage = "Tehnična napaka: API ključ ni zaznan. Prosim, osveži stran.";
-      }
-      
-      setMessages(prev => [...prev, { role: 'model', text: errorMessage }]);
+      console.error("Chat Error:", error);
+      setMessages(prev => [...prev, { 
+        role: 'model', 
+        text: "Oprosti, trenutno imam težave s povezavo. Preveri, če je tvoj API ključ aktiven, ali nam piši na pici@aiuniverza.si." 
+      }]);
     } finally {
       setIsLoading(false);
     }
@@ -111,11 +92,9 @@ export const SupportAgent: React.FC = () => {
 
   return (
     <>
-      {/* Floating Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="fixed bottom-28 md:bottom-8 right-4 md:right-8 z-[90] bg-brand-gold text-white p-4 rounded-full shadow-[0_10px_40px_rgba(212,175,55,0.4)] hover:scale-110 active:scale-95 transition-all duration-300 group border border-white/20"
-        aria-label="Podpora v živo"
       >
         {isOpen ? <X size={28} /> : <MessageCircle size={28} className="group-hover:rotate-12 transition-transform" />}
         {!isOpen && (
@@ -126,10 +105,8 @@ export const SupportAgent: React.FC = () => {
         )}
       </button>
 
-      {/* Chat Window */}
       {isOpen && (
         <div className="fixed bottom-44 md:bottom-28 right-4 md:right-8 w-[calc(100vw-2rem)] md:w-[400px] h-[550px] max-h-[70vh] bg-[#0a0a0a] border border-white/10 rounded-3xl shadow-2xl z-[90] flex flex-col overflow-hidden animate-in fade-in slide-in-from-bottom-10 duration-300 backdrop-blur-xl">
-          {/* Header */}
           <div className="bg-gradient-to-r from-brand-gold to-brand-blue p-5 flex items-center justify-between shadow-lg">
             <div className="flex items-center gap-3">
               <div className="bg-black/20 p-2 rounded-xl border border-white/10">
@@ -148,11 +125,9 @@ export const SupportAgent: React.FC = () => {
             </button>
           </div>
 
-          {/* Messages Area */}
           <div 
             ref={chatContainerRef}
             className="flex-1 overflow-y-auto p-4 space-y-4 scroll-smooth"
-            style={{ scrollbarWidth: 'thin', scrollbarColor: '#333 transparent' }}
           >
             {messages.map((msg, i) => (
               <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'} animate-in fade-in slide-in-from-bottom-2 duration-300`}>
@@ -188,7 +163,6 @@ export const SupportAgent: React.FC = () => {
             )}
           </div>
 
-          {/* Input Area */}
           <div className="p-4 border-t border-white/5 bg-black/50 backdrop-blur-md">
             <div className="relative">
               <input
@@ -205,7 +179,6 @@ export const SupportAgent: React.FC = () => {
                 className={`absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-lg transition-all duration-300 ${
                   input.trim() && !isLoading ? 'text-brand-gold bg-brand-gold/10 hover:bg-brand-gold/20' : 'text-gray-600'
                 }`}
-                aria-label="Pošlji sporočilo"
               >
                 <Send size={18} />
               </button>
