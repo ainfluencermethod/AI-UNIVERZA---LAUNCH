@@ -36,7 +36,7 @@ export const Hero: React.FC = () => {
         </div>
 
         {/* 1. Headline - Refined for high impact without unrealistic promises */}
-        <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-sans font-black text-white leading-tight md:leading-[1.1] mb-6 tracking-tighter drop-shadow-2xl max-w-6xl mx-auto animate-fade-in-up text-center px-4" style={{ animationDelay: '100ms' }}>
+        <h1 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-sans font-black text-white leading-tight md:leading-[1.1] mb-6 tracking-tighter drop-shadow-2xl max-w-5xl mx-auto animate-fade-in-up text-center px-4" style={{ animationDelay: '100ms' }}>
           Nauči se Graditi <br className="hidden md:block" />
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] italic pr-4 inline-block pb-1">AI Digitalne Blagovne Znamke</span> 
           <br className="hidden md:block" /> 
@@ -44,7 +44,7 @@ export const Hero: React.FC = () => {
         </h1>
 
         {/* 2. Subheadline */}
-        <p className="text-lg sm:text-xl md:text-2xl text-gray-300 font-medium mb-10 md:mb-14 max-w-3xl mx-auto leading-relaxed drop-shadow-md text-center animate-fade-in-up px-4" style={{ animationDelay: '200ms' }}>
+        <p className="text-base sm:text-lg md:text-xl text-gray-300 font-medium mb-10 md:mb-14 max-w-3xl mx-auto leading-relaxed drop-shadow-md text-center animate-fade-in-up px-4" style={{ animationDelay: '200ms' }}>
           Pridruži se v AI Universo, kjer spoznaš <span className="text-white font-bold">preizkušene strategije</span> za gradnjo digitalne prisotnosti in <span className="text-white font-bold border-b-2 border-brand-gold/50">učinkovito uporabo AI orodij</span>. Razvij veščine, ki bodo dominirale v prihodnosti.
         </p>
 
