@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { Hero } from './components/Hero';
@@ -27,7 +26,6 @@ import { CountdownTimer } from './components/CountdownTimer';
 import { Button } from './components/Button';
 import { CheckoutForm } from './components/CheckoutForm';
 import { CookieConsent } from './components/CookieConsent';
-import { SupportAgent } from './components/SupportAgent';
 
 type AppStep = 'landing' | 'upsell' | 'success' | 'rules' | 'privacy' | 'terms' | 'contact';
 
@@ -228,9 +226,6 @@ const App: React.FC = () => {
                       </div>
                   </div>
               )}
-
-              {/* AI Support Chatbot */}
-              <SupportAgent />
           </div>
         </div>
       )}
