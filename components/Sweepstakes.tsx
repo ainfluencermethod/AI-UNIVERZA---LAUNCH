@@ -154,7 +154,7 @@ export const Sweepstakes: React.FC = () => {
                             </h4>
                          </div>
                          <p className="text-gray-400 text-xl leading-relaxed font-medium">
-                            Vsi, ki se pridružijo do <strong className="text-white font-black underline decoration-brand-gold decoration-2">16. 1. do 23.29</strong>, prejmejo <strong className="text-white font-black">1x vstopnico</strong> v žrebanje za nagrade.
+                            Vsi, ki se pridružijo do <strong className="text-white font-black underline decoration-brand-gold decoration-2">16. 1. ob 23:59</strong>, prejmejo <strong className="text-white font-black">1x vstopnico</strong> v žrebanje za nagrade.
                          </p>
                          <div className="mt-8 flex items-center gap-6">
                             <div className="flex items-center gap-2 text-xs font-black text-gray-500 uppercase tracking-widest">

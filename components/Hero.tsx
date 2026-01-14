@@ -1,11 +1,11 @@
 import React from 'react';
-import { Ghost, ShieldCheck, Lock, Zap, Trophy, Star, Users } from 'lucide-react';
+import { Ghost, ShieldCheck, Lock, Zap, Trophy, Star, Users, TrendingUp } from 'lucide-react';
 import { Button } from './Button';
 import { VideoDemo } from './VideoDemo';
 
 export const Hero: React.FC = () => {
   return (
-    <div className="relative pt-12 pb-6 md:pt-32 md:pb-24 px-4 text-center overflow-hidden bg-black flex flex-col items-center">
+    <div className="relative pt-20 pb-6 md:pt-40 md:pb-24 px-4 text-center overflow-hidden bg-black flex flex-col items-center">
       
       {/* --- Stage Background Effects --- */}
       <div className="absolute inset-0 pointer-events-none">
@@ -17,7 +17,7 @@ export const Hero: React.FC = () => {
       <div className="relative w-full z-10 flex flex-col items-center max-w-[80rem]">
         
         {/* Trust/Social Proof Badge - High Conversion Element */}
-        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4 backdrop-blur-md animate-fade-in-up shadow-xl">
+        <div className="inline-flex items-center gap-2 bg-white/5 border border-white/10 rounded-full px-3 py-1 mb-4 backdrop-blur-md animate-fade-in-up shadow-xl mt-4 md:mt-0">
             <div className="flex -space-x-1.5">
                 {[1, 2, 3].map((i) => (
                     <img 
@@ -93,15 +93,19 @@ export const Hero: React.FC = () => {
                     Samo še nekaj prostih mest za ta krog vpisov!
                  </div>
 
-                 {/* Benefit Grid - Micro UI */}
-                 <div className="grid grid-cols-2 gap-2 w-full max-w-sm mx-auto mb-6">
-                    <div className="bg-white/[0.03] border border-white/10 rounded-lg p-2 flex items-center gap-2">
-                        <Ghost className="text-brand-gold shrink-0" size={12} />
-                        <span className="text-white font-black text-[7px] md:text-[8px] uppercase tracking-wider text-left">Faceless<br/>Modeli</span>
+                 {/* Benefit Grid - Slovenian High-Value Labels */}
+                 <div className="grid grid-cols-2 gap-3 w-full max-w-sm mx-auto mb-6">
+                    <div className="bg-white/[0.03] border border-white/10 rounded-xl p-3 flex items-center gap-3 group/card hover:border-brand-gold/40 transition-all cursor-default">
+                        <div className="bg-brand-gold/10 p-2 rounded-lg group-hover/card:scale-110 transition-transform shrink-0">
+                            <Ghost className="text-brand-gold" size={16} />
+                        </div>
+                        <span className="text-white font-black text-[9px] md:text-[10px] uppercase tracking-widest text-left leading-tight">100% BREZ<br/>OBRAZA</span>
                     </div>
-                    <div className="bg-white/[0.03] border border-white/10 rounded-lg p-2 flex items-center gap-2">
-                        <Zap className="text-brand-gold shrink-0" size={12} />
-                        <span className="text-white font-black text-[7px] md:text-[8px] uppercase tracking-wider text-left">Zero-Cost<br/>Orodja</span>
+                    <div className="bg-white/[0.03] border border-white/10 rounded-xl p-3 flex items-center gap-3 group/card hover:border-brand-gold/40 transition-all cursor-default">
+                        <div className="bg-brand-gold/10 p-2 rounded-lg group-hover/card:scale-110 transition-transform shrink-0">
+                            <TrendingUp className="text-brand-gold" size={16} />
+                        </div>
+                        <span className="text-white font-black text-[9px] md:text-[10px] uppercase tracking-widest text-left leading-tight">VIRALNA<br/>RAST</span>
                     </div>
                  </div>
 
