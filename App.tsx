@@ -7,6 +7,8 @@ import { CountdownTimer } from './components/CountdownTimer';
 import { Button } from './components/Button';
 import { ParallaxBackground } from './components/ParallaxBackground';
 import { ScrollReveal } from './components/ScrollReveal';
+import { ExitIntentPopup } from './components/ExitIntentPopup';
+import { SocialProofNotification } from './components/SocialProofNotification';
 
 // Non-Critical Components (Lazy Loaded)
 const SocialProof = lazy(() => import('./components/SocialProof').then(m => ({ default: m.SocialProof })));
@@ -67,6 +69,8 @@ const App: React.FC = () => {
   return (
     <Suspense fallback={<div className="bg-black min-h-screen" />}>
       <CookieConsent />
+      <ExitIntentPopup />
+      <SocialProofNotification />
       
       {currentStep === 'rules' && <SweepstakesRules />}
       {currentStep === 'privacy' && <PrivacyPolicy />}
@@ -160,17 +164,17 @@ const App: React.FC = () => {
                   </div>
               </footer>
 
-              {/* Sticky Bottom CTA for Mobile */}
-              <div className="fixed bottom-0 left-0 right-0 z-[80] px-4 py-3 bg-black/95 backdrop-blur-xl border-t border-white/10 md:hidden pb-10 safe-area-pb">
+              {/* Sticky Bottom CTA for Mobile - Enhanced Aesthetic */}
+              <div className="fixed bottom-0 left-0 right-0 z-[80] px-4 py-3 bg-black/95 backdrop-blur-2xl border-t border-white/10 md:hidden pb-10 safe-area-pb shadow-[0_-10px_30px_rgba(0,0,0,0.5)]">
                   <div className="flex items-center justify-between gap-4 max-w-sm mx-auto">
                       <div className="flex flex-col">
-                          <p className="text-red-500 text-[8px] font-black uppercase tracking-widest flex items-center gap-1">
-                              <span className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse"></span> 
+                          <p className="text-brand-red text-[8px] font-black uppercase tracking-widest flex items-center gap-1.5 mb-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-brand-red animate-pulse shadow-[0_0_8px_rgba(255,49,49,1)]"></span> 
                               OMEJENA MESTA!
                           </p>
-                          <span className="text-brand-gold font-black text-lg">497€</span>
+                          <span className="text-brand-gold font-black text-xl tracking-tighter">497€</span>
                       </div>
-                      <Button onClick={() => setIsMobileCheckoutOpen(true)} className="!py-2.5 !px-6 !text-xs" autoShimmer>
+                      <Button onClick={() => setIsMobileCheckoutOpen(true)} className="!py-3 !px-8 !text-[11px] !gap-2" autoShimmer>
                           PRIDRUŽI SE
                       </Button>
                   </div>

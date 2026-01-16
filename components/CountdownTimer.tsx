@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { AlertTriangle, Clock, Zap } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 interface CountdownTimerProps {
   targetDateStr?: string;
@@ -38,28 +38,28 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDateStr, v
 
   if (variant === 'sticky') {
       return (
-        <div className="fixed top-0 left-0 right-0 z-[100] bg-black/95 border-b-2 border-brand-red/30 backdrop-blur-3xl flex items-center justify-center py-3 md:py-4 px-4 shadow-[0_20px_50px_rgba(255,49,49,0.3)] animate-fade-in-up">
-             <div className="flex items-center gap-4 md:gap-16 max-w-[90rem] mx-auto w-full justify-between">
+        <div className="fixed top-0 left-0 right-0 z-[100] bg-black border-b-2 border-brand-red/20 backdrop-blur-3xl flex items-center justify-center py-2 md:py-4 px-4 shadow-[0_10px_30px_rgba(0,0,0,0.8)] animate-fade-in-up">
+             <div className="flex items-center gap-2 md:gap-16 max-w-[90rem] mx-auto w-full justify-between">
                 
                 {/* Status Indicator */}
-                <div className="flex items-center gap-4 group cursor-default">
-                    <div className="relative flex h-4 w-4 shrink-0">
+                <div className="flex items-center gap-2 md:gap-4 group cursor-default">
+                    <div className="relative flex h-3 w-3 md:h-4 md:w-4 shrink-0">
                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-red opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-4 w-4 bg-brand-red shadow-[0_0_15px_rgba(255,49,49,1)]"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 md:h-4 md:w-4 bg-brand-red shadow-[0_0_10px_rgba(255,49,49,1)]"></span>
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-xs md:text-base font-black text-white uppercase tracking-tighter leading-none flex items-center gap-2">
+                        <span className="text-[10px] md:text-base font-black text-white uppercase tracking-tighter leading-none">
                            ZAPIRA SE ČEZ:
                         </span>
-                        <span className="text-[8px] md:text-[11px] text-brand-red font-black uppercase tracking-[0.3em] mt-1.5 animate-pulse">
+                        <span className="text-[7px] md:text-[10px] text-brand-red font-black uppercase tracking-[0.2em] mt-1 animate-pulse">
                             ZADNJA PRILOŽNOST VPISA
                         </span>
                     </div>
                 </div>
 
                 {/* Main Countdown Display */}
-                <div className="flex items-center gap-4 md:gap-10">
-                    <div className="flex items-center gap-3 md:gap-8">
+                <div className="flex items-center gap-2 md:gap-10">
+                    <div className="flex items-center gap-2 md:gap-8">
                         <TimeUnit value={timeLeft.days} label="DNI" />
                         <Separator />
                         <TimeUnit value={timeLeft.hours} label="UR" />
@@ -91,16 +91,16 @@ export const CountdownTimer: React.FC<CountdownTimerProps> = ({ targetDateStr, v
 };
 
 const TimeUnit = ({ value, label, isSeconds = false }: { value: number, label: string, isSeconds?: boolean }) => (
-    <div className={`flex flex-col items-center min-w-[35px] md:min-w-[55px] transition-all duration-300`}>
-        <span className={`text-2xl md:text-5xl font-black tabular-nums tracking-tighter ${isSeconds ? 'text-brand-red' : 'text-brand-gold'} leading-none drop-shadow-[0_0_10px_rgba(212,175,55,0.3)]`}>
+    <div className={`flex flex-col items-center min-w-[30px] md:min-w-[55px] transition-all duration-300`}>
+        <span className={`text-xl md:text-5xl font-black tabular-nums tracking-tighter ${isSeconds ? 'text-brand-red' : 'text-brand-gold'} leading-none drop-shadow-[0_0_10px_rgba(212,175,55,0.2)]`}>
             {String(value).padStart(2, '0')}
         </span>
-        <span className={`text-[7px] md:text-[10px] font-black text-gray-500 uppercase tracking-widest mt-2`}>
+        <span className={`text-[6px] md:text-[10px] font-black text-gray-500 uppercase tracking-widest mt-1 md:mt-2`}>
             {label}
         </span>
     </div>
 );
 
 const Separator = () => (
-    <span className="text-gray-800 text-xl md:text-4xl -mt-5 md:-mt-8 font-black select-none animate-pulse">:</span>
+    <span className="text-gray-800 text-sm md:text-4xl -mt-3 md:-mt-8 font-black select-none opacity-50">:</span>
 );
