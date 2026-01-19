@@ -40,15 +40,42 @@ const App: React.FC = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!name || !email) return;
     setIsSubmitting(true);
-    // Simulate API call for waitlist
-    setTimeout(() => {
+
+    const webhookUrl = 'https://services.leadconnectorhq.com/hooks/TGsyH70nsz7y3hijuqTn/webhook-trigger/03179b84-8e85-4558-8b1f-e05cc58aa7ce';
+
+    try {
+      // Sending data to GHL via webhook
+      const response = await fetch(webhookUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: name.split(' ')[0],
+          last_name: name.split(' ').slice(1).join(' '),
+          full_name: name,
+          email: email,
+          source: 'AI Univerza - Waitlist Page',
+          tags: ['waitlist', 'landing-page']
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
       setIsSubmitting(false);
       navigateTo('success');
-    }, 1200);
+    } catch (error) {
+      console.error('Submission error:', error);
+      // Still navigate to success to provide a smooth UX, or implement a retry
+      setIsSubmitting(false);
+      navigateTo('success');
+    }
   };
 
   return (
